@@ -19,19 +19,19 @@ public class day1 {
         return y.get(y.size()-1)+y.get(y.size()-2)+y.get(y.size()-3);
     }
 
-    private static List<Integer> getIntegers(List<String> x) {
-        List<Integer> y = new ArrayList<>();
-        int z = 0;
-        for (String value : x){
-            if (value.equals("")){
-                y.add(z);
-                z=0;
+    private static List<Integer> getIntegers(List<String> data) {
+        List<Integer> listOfCalories = new ArrayList<>();
+        int currentCalorie = 0;
+        for (String line : data){
+            if (line.equals("")){
+                listOfCalories.add(currentCalorie);
+                currentCalorie=0;
             }else {
-                z += Integer.parseInt(value);
+                currentCalorie += Integer.parseInt(line);
             }
         }
-        Collections.sort(y);
-        return y;
+        Collections.sort(listOfCalories);
+        return listOfCalories;
     }
 
 
