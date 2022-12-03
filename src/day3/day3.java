@@ -7,9 +7,9 @@ import java.util.*;
 public class day3 {
     public static int run1(List<String> x){
         int sumOfItemTypes = 0;
-        List<Character> characters1 = new ArrayList<>();
-        List<Character> characters2 = new ArrayList<>();
         for (String line: x){
+            List<Character> characters1 = new ArrayList<>();
+            List<Character> characters2 = new ArrayList<>();
             for (int i = 0; i<line.length();i++){
                 if (i<line.length()/2){
                     characters1.add(line.charAt(i));
@@ -19,17 +19,10 @@ public class day3 {
             }
             for (Character c : characters1){
                 if (characters2.contains(c)){
-                    if (Character.isLowerCase(c)){
-                        sumOfItemTypes+=Character.getNumericValue(c)-9;
-                    }else {
-                        sumOfItemTypes+=Character.getNumericValue(c)+17;
-                    }
-                    characters1.clear();
-                    characters2.clear();
+                    sumOfItemTypes = getSumOfItemTypes(c, sumOfItemTypes);
                     break;
                 }
             }
-
         }
         return sumOfItemTypes;
     }
@@ -48,13 +41,18 @@ public class day3 {
             for (int k = 0; k<abc.length();k++){
                 if (characters1.contains(abc.charAt(k)) && characters2.contains(abc.charAt(k))
                         && characters3.contains(abc.charAt(k))){
-                    if (Character.isLowerCase(abc.charAt(k))){
-                        sumOfItemTypes+=Character.getNumericValue(abc.charAt(k))-9;
-                    }else {
-                        sumOfItemTypes+=Character.getNumericValue(abc.charAt(k))+17;
-                    }
+                    sumOfItemTypes = getSumOfItemTypes(abc.charAt(k), sumOfItemTypes);
                 }
             }
+        }
+        return sumOfItemTypes;
+    }
+
+    private static int getSumOfItemTypes(char abc, int sumOfItemTypes) {
+        if (Character.isLowerCase(abc)){
+            sumOfItemTypes +=Character.getNumericValue(abc)-9;
+        }else {
+            sumOfItemTypes +=Character.getNumericValue(abc)+17;
         }
         return sumOfItemTypes;
     }
@@ -64,17 +62,8 @@ public class day3 {
             characters.add(x.get(i).charAt(j));
         }
     }
-
-    public static void test(){
-
-    }
-
-
     public static void main(String[] args) {
         List<String> x = fileReader.inputFileToStringList("InputFiles/day3input1");
-        //run2();
-        //System.out.println(run1(x));
         System.out.println(run2(x));
-        //System.out.println(run2());
     }
 }
