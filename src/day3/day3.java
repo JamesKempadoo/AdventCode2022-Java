@@ -64,6 +64,7 @@ public class day3 {
     }
     public static void main(String[] args) {
         List<String> x = fileReader.inputFileToStringList("InputFiles/day3input1");
+        System.out.println(run1(x));
         System.out.println(run2(x));
     }
 }
